@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Admin;
 // 認証関係のファサードを使うための宣言
 use Illuminate\Support\Facades\Auth;
+// Hash化のための宣言
 use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller

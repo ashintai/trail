@@ -21,7 +21,7 @@
         @csrf
         <input type="email" name="admin_email" >
         <input type="text" name="admin_pass" >
-        <button type="submit"> 管理者設定</button>
+        <button type="submit"> 設定</button>
     </form>
 
 
