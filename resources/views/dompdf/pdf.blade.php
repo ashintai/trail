@@ -34,14 +34,14 @@
                 position: absolute;
                 top: 55%;
                 left: 0%;
-                font-size:40px;
+                font-size:30px;
             }
             /* 駐車場記号の位置 */
             .overlay-park{
                 position: absolute;
                 top: 5%;
                 left: 25%;
-                font-size:400px;
+                font-size:300px;
                 color:blue;
             }
 
