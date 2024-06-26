@@ -16,7 +16,7 @@
         </style>
     </head>
     
-    // 管理者のemailとpassの設定
+     <!-- 管理者のemailとpassの設定 -->
     <form action="{{ url('/admin_pass') }}" method="POST">
         @csrf
         <input type="email" name="admin_email" >
