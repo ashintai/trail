@@ -60,6 +60,6 @@ class LoginController extends Controller
     $admin->password = Hash::make($request->admin_pass);
     $admin->save();
 
-    redirect( '/admin');
+    return redirect( '/admin');
   }
 }
