@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\DompdfController;
+use App\Http\Controllers\Admin\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,7 @@ Route::get('/', function () {
 });
 
 //管理者の設定
-Route::post('/admin_pass' , [Admin/LoginController::class , 'admin_pass'])->name('admin_pass');
+Route::post('/admin_pass' , [LoginController::class , 'admin_pass'])->name('admin_pass');
 
 
 // ＰＤＦ１テスト
