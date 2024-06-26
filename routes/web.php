@@ -25,6 +25,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//管理者の設定
+Route::post('/admin_pass' , [Admin/LoginController::class , 'admin_pass'])->name('admin_pass');
+
 
 // ＰＤＦ１テスト
 Route::get('dompdf/pdf' , [DompdfController::class , 'generatePDF']);

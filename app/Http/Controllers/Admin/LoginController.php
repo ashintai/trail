@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 // 認証関係のファサードを使うための宣言
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -47,5 +48,14 @@ class LoginController extends Controller
     return redirect()->route('admin.login.index')->with([
       'logout_msg' => 'ログアウトしました',
     ]);
+  }
+
+  // 管理者設定
+  public function admin_pass(Request $request)
+  {
+    $admin = new Admin();
+    $admin->email = $request->admin_email;
+    $admin->password = Hash::make($request->admin_pass);
+    $admin->save();
   }
 }
