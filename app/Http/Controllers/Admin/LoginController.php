@@ -57,5 +57,6 @@ class LoginController extends Controller
     $admin->email = $request->admin_email;
     $admin->password = Hash::make($request->admin_pass);
     $admin->save();
+    
   }
 }
