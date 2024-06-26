@@ -50,13 +50,13 @@ class LoginController extends Controller
     ]);
   }
 
-  // 管理者設定
+  // 管理者の設定
   public function admin_pass(Request $request)
   {
     $admin = new Admin();
     $admin->email = $request->admin_email;
     $admin->password = Hash::make($request->admin_pass);
     $admin->save();
-    
+
   }
 }
