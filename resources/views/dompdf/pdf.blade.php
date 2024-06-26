@@ -40,7 +40,7 @@
             .overlay-park{
                 position: absolute;
                 top: 5%;
-                left: 25%;
+                left: 20%;
                 font-size:300px;
                 color:blue;
             }
