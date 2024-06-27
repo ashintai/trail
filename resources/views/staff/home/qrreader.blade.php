@@ -7,20 +7,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>スタッフ＞QR読取り</title>
-
-    <!-- カメラ用スタイル -->
-    <style>
-
-canvas {
-    padding-left: 0;
-    padding-right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    width: 50%;
-}
-
-</style>
 </head>
 
 <body>
@@ -35,146 +21,44 @@ canvas {
     <a href=" {{ url('staff/') }}" class="btn btn-primary m-1">戻る</a>
 </div> 
 
-<div id="app">
-    <div style="text-align:center;font-size:35px;">QRコードを読みとって自動ログインできます</div>
-    <br>
-    <canvas ref="canvas"></canvas>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
-<script>
+<body>
+    <canvas id="canvas" style="width:100%;"></canvas>
 
-    new Vue({
-        el: '#app',
-        data: {
-            video: null,
-            canvas: null,
-            context: null,
-            uuid: '',
-            completed: false,
-            componentWidth: -1,
-        },
-        computed: {
-            hasUuid() {
+    <!-- jsQRのCDN -->
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
 
-                return (this.uuid !== '');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.createElement('video');
+            const canvasElement = document.getElementById('canvas');
+            const canvas = canvasElement.getContext('2d');
 
-            }
-        },
-        methods: {
-            renderFrame() {
-
-                if(!this.hasUuid && !this.completed) { // まだQRコードが読み込まれていない場合
-
-                    const video = this.video;
-                    const canvas = this.canvas;
-                    const context = this.context;
-
-                    if(video.readyState === video.HAVE_ENOUGH_DATA) {
-
-                        context.drawImage(video, 0, 0, canvas.width, canvas.height);
-                        const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-                        const code = jsQR(imageData.data, imageData.width, imageData.height);
-
-                        if(code) {
-
-                            this.uuid = code.data;
-                            axios.post('/auth/qr_login', { uuid: this.uuid })
-                                .then((response) => {
-
-                                    const result = response.data.result;
-                                    const user = response.data.user;
-
-                                    if(result) {
-
-                                        this.completed = true;
-                                        alert('「'+ user.name +'」さん、おはようございます！');
-                                        // location.href = '/user'; // ここでリダイレクト
-
-                                    } else {
-
-                                        console.log('ログイン失敗..');
-
-                                    }
-
-                                })
-                                .catch(error => {
-
-                                    console.log(error);
-
-                                })
-                                .finally(() => {
-
-                                    this.uuid = '';
-
-                                });
-
-                        }
-
-                    }
-
-                }
-
-                requestAnimationFrame(this.renderFrame);
-
-            },
-            initializeVideo(videoParams) {
-
-                return navigator.mediaDevices.getUserMedia(videoParams)
-
-            },
-            initializeVideoThen(stream) {
-
-                this.video.srcObject = stream;
-                this.video.play();
-
-            }
-        },
-        mounted() {
-
-            this.video = document.createElement('video');
-            this.video.addEventListener('loadedmetadata', () => {
-
-                this.canvas.width = this.componentWidth;
-                this.canvas.height = Number(this.canvas.width * this.video.videoHeight / this.video.videoWidth);
-                this.renderFrame();
-
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } }).then(function(stream) {
+                video.srcObject = stream;
+                video.setAttribute('playsinline', true); // iOS対応
+                video.play();
+                requestAnimationFrame(tick);
             });
-            this.video.setAttribute('autoplay', '');
-            this.video.setAttribute('muted', '');
-            this.video.setAttribute('playsinline', '');
-            this.canvas = this.$refs.canvas;
-            this.context = this.canvas.getContext('2d');
-            this.componentWidth = this.canvas.offsetWidth;
 
-            const videoParams = {
-                audio: false,
-                video: {
-                    facingMode: {
-                        exact: 'environment'
-                    },
-                    width: { ideal: 1080 },
-                    height: { ideal: 720 }
+            function tick() {
+                if (video.readyState === video.HAVE_ENOUGH_DATA) {
+                    canvasElement.height = video.videoHeight;
+                    canvasElement.width = video.videoWidth;
+                    canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+                    const imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
+                    const code = jsQR(imageData.data, imageData.width, imageData.height, {
+                        inversionAttempts: "dontInvert",
+                    });
+
+                    if (code) {
+                        console.log("Found QR code", code);
+                        // QRコードが見つかった場合の処理をここに書く
+                    }
                 }
-            };
-
-            this.initializeVideo(videoParams)
-                .then(this.initializeVideoThen)
-                .catch(() => {
-
-                    this.initializeVideo({ video: true })
-                        .then(this.initializeVideoThen)
-
-                });
-
-        }
-    });
-
-</script>
-
-
-
+                requestAnimationFrame(tick);
+            }
+        });
+    </script>
     <!-- QRコード読み取り　ここまで -->
 
 <!-- フッター -->
