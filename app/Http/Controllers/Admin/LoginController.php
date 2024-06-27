@@ -37,7 +37,7 @@ class LoginController extends Controller
     //ログインできなかったときに元のページに戻る
     return back()->withErrors([
       'login' => ['ログインに失敗しました'],
-    ]);
+    ])->withInput();
   }
 
   //ログアウト処理
@@ -60,6 +60,6 @@ class LoginController extends Controller
     $admin->password = Hash::make($request->admin_pass);
     $admin->save();
 
-    return redirect( '/admin')->withInput();
+    return redirect( '/admin');
   }
 }
