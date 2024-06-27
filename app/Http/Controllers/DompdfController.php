@@ -30,7 +30,7 @@ class DompdfController extends Controller
         // 必要最低限のフォントのみをPDFへ埋め込み設定
         $pdf->setOptions([
             'isFontSubsettingEnabled' => true, // 必要最低限のフォントのみを埋め込む
-            'defaultFont' => 'Helvetica', // デフォルトフォントを設定
+            'defaultFont' => 'ipag', // デフォルトフォントを設定
         ]);
 
         // PDFファイルを生成してWebへ表示
