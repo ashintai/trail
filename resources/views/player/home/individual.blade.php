@@ -27,14 +27,7 @@
     </header>
    
     <!-- 戻るボタン -->
-    <div class="w-50">
     <div class="text-end">
-        <a href=" {{ url('player/login') }}" class="btn btn-primary m-1">戻る</a>
-    </div>
-    </div>
-
-
-     <div class="text-end">
     <a href="javascript:void(0)" onclick="goBack()" class="btn btn-primary m-1">戻る</a>
     </div>
     <script>
