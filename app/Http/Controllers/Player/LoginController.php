@@ -57,14 +57,14 @@ class LoginController extends Controller
                 // Mail::to( $email )->send(new PassEmail($passcode ));
                 return back()->withErrors([
                     'login' => ['本番モード：パスコードを発行しました' . $passcode],
-                  ]);
+                  ])->withInput();
             }
           
         }else{
             // emailが存在しない
             return back()->withErrors([
                 'login' => ['メールアドレス登録されていません'],
-              ]);
+              ])->withInput();
         }
     }
     
