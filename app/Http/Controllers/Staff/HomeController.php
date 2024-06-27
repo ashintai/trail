@@ -94,6 +94,12 @@ use App\Models\Park;
           return redirect( 'staff' );
   
       }
+
+    //   QRコード読み取り
+    public function qrreader()
+    {
+        return view('staff.home.qrreader');
+    }
   }
 
 
