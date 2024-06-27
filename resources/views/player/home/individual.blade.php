@@ -149,7 +149,7 @@
 
     // ページロード時にQRコードを生成
     document.addEventListener('DOMContentLoaded', function() {
-        generateQRCode( '{{ $player->zekken }},{{ $player->id }}' );  // QRコードに含めるテキスト
+        generateQRCode( '{{ $player->id }},{{ $player->zekken }},{{ $player->name}}' );  // QRコードに含めるテキスト
     });
 </script>
 
