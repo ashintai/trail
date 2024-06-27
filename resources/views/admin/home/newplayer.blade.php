@@ -25,10 +25,13 @@
     </div>
 @endif
 
-<!-- 戻るボタン -->
- <div class="text-end">
-    <a href="{{ url('/admin') }} " class="btn btn-primary m-1">戻る</a>
-<!-- <a href="javascript:void(0)" onclick="goBack()" class="btn btn-primary m-1">戻る</a> -->
+    <!-- 戻るボタン -->
+    <div class="w-50">
+    <div class="text-end">
+        <a href=" {{ url('admin/') }}" class="btn btn-primary m-1">戻る</a>
+    </div>
+    </div>
+
 </div>
     <script>
     function goBack(){ window.history.back(); }

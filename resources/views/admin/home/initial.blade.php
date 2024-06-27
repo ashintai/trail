@@ -14,7 +14,7 @@
         <h5 class="m-2">三河高原トレイルランニングレース　大会運営支援システム</h5>
         <hr>
     </header> 
-
+    <!-- 戻るボタン -->
     <div class="w-50">
     <div class="text-end">
         <a href=" {{ url('admin/') }}" class="btn btn-primary m-1">戻る</a>

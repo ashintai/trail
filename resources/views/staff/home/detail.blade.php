@@ -14,18 +14,13 @@
   <hr>
 </header>
     
-
     <!-- 戻るボタン -->
-    <!-- Windowsの前ページに戻る関数をscriptで呼び出す -->
-    <div class="text-end">    
-        <a href="javascript:void(0)" onclick="goBack()" class="btn btn-primary m-1">戻る</a>
+    <div class="w-50">
+    <div class="text-end">
+        <a href=" {{ url('staff/') }}" class="btn btn-primary m-1">戻る</a>
     </div>
-    <script>
-        function goBack(){
-        window.history.back();
-        }
-    </script>
-
+    </div>
+   
     <!-- // バリデーションエラーの表示 -->
     @if ($errors->any())
         <div >

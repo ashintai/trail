@@ -27,6 +27,13 @@
     </header>
    
     <!-- 戻るボタン -->
+    <div class="w-50">
+    <div class="text-end">
+        <a href=" {{ url('player/login') }}" class="btn btn-primary m-1">戻る</a>
+    </div>
+    </div>
+
+
      <div class="text-end">
     <a href="javascript:void(0)" onclick="goBack()" class="btn btn-primary m-1">戻る</a>
     </div>
@@ -139,15 +146,6 @@
 
   @endif
 
-
-
-
-
- <!-- QRCode.jsのCDN -->
- <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
     <script>
         // QRコードを生成する関数
         function generateQRCode(text) {
