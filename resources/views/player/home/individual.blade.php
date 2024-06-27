@@ -143,6 +143,7 @@
             text: text,
             width: 128,   // QRコードの幅
             height: 128,  // QRコードの高さ
+            encoding: "UTF-8" //UTF-8でQRコードを作成
         });
     }
 
