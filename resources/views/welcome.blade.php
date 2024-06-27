@@ -24,6 +24,13 @@
         <button type="submit"> 設定</button>
     </form>
 
+    <!-- 管理者、スタッフ、参加者へのリンク -->
+
+    <a href="{{ url('/admin') }} ">管理者</a>
+    <a href="{{ url('/staff') }}">スタッフ</a>
+    <a href="{{ url('/player') }}">参加者</a>
+
+
 
 
     <body class="antialiased">
