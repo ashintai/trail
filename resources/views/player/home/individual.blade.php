@@ -143,13 +143,12 @@
             text: text,
             width: 128,   // QRコードの幅
             height: 128,  // QRコードの高さ
-            encoding: "UTF-8" //UTF-8でQRコードを作成
         });
     }
 
     // ページロード時にQRコードを生成
     document.addEventListener('DOMContentLoaded', function() {
-        generateQRCode( '{{ $player->id }},{{ $player->zekken }},{{ $player->name}}' );  // QRコードに含めるテキスト
+        generateQRCode( '{{ $player->id }},{{ $player->zekken }}' );  // QRコードに含めるテキスト
     });
 </script>
 
