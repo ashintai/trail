@@ -214,6 +214,20 @@
         </div>
     </div>
 
+    <!-- パスワードの入力 -->
+    <div class="d-flex m-1">
+        <div class="w-25 text-end">
+           パスコード:</div>
+        <div class="w-75">
+            <input type="text" class="form-control border border-dark rounded-1 text-end bg-info" name="password" >
+        </div>
+    </div>
+    <div>
+        管理者がパスコードを設定したい場合は、パスコードを入力してください。<br>
+        ただし、参加者が自分でパスコードを発行した場合は、置き換わります。<br>
+    </div>
+
+
     <div class="text-end">
         <button class="btn btn-primary" >編集登録</button>
     </div>

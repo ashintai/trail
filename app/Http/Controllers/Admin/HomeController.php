@@ -95,6 +95,7 @@ class HomeController extends Controller
             'bus_ride' => 'nullable|Integer',
             'reseption' => 'nullable|Integer',
             'phone' => 'nullable|string',
+            'password' => 'nullable|string',
             ];
     
         //  バリデーションエラーメッセージの定義
@@ -125,6 +126,14 @@ class HomeController extends Controller
         $player->bus_ride = $validated['bus_ride'];
         $player->reseption = $validated['reseption'];
         $player->phone = $validated['phone'];
+        
+        // パスコードの指定があった場合は、Ｈａｓｈ化する。
+        $pass = $validated['password'];
+        if(!empty($pass)){
+            $player->password = Hash::make( $pass );
+        }
+
+        
         
         $player->save();
 
