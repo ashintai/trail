@@ -30,21 +30,21 @@ Route::get('/', function () {
 Route::post('/admin_pass' , [LoginController::class , 'admin_pass'])->name('admin_pass');
 
 
-// ＰＤＦ１テスト
-Route::get('dompdf/pdf' , [DompdfController::class , 'generatePDF']);
+// // ＰＤＦ１テスト
+// Route::get('dompdf/pdf' , [DompdfController::class , 'generatePDF']);
 
-// 参加者一覧へのルート
-Route::get('/index' , [IndexController::class,'index'])->name('index');
-// 参加者編集へのルート
-Route::get('/edit/{id}' , [IndexController::class,'edit'])->name('edit');
-// エントリーのCSVファイル読込へのルート
-Route::post('/csvImport' , [IndexController::class ,'csvImport'])->name('csvImport');
-// 参加者のログイン画面
-Route::get('/login' , [IndexController::class , 'login'])->name('login');
-// グループ申込での個人選択画面へのルート
-Route::get('group' , [IndexController::class, 'group'])->name('group');
-// 各個人の誓約書の画面へのルート
-Route::get('promise' , [IndexController::class , 'promise'])->name('promise');
-// Park　Catgories　DB　の初期化
-Route::get('init' , [IndexController::class , 'init'])->name('init');
+// // 参加者一覧へのルート
+// Route::get('/index' , [IndexController::class,'index'])->name('index');
+// // 参加者編集へのルート
+// Route::get('/edit/{id}' , [IndexController::class,'edit'])->name('edit');
+// // エントリーのCSVファイル読込へのルート
+// Route::post('/csvImport' , [IndexController::class ,'csvImport'])->name('csvImport');
+// // 参加者のログイン画面
+// Route::get('/login' , [IndexController::class , 'login'])->name('login');
+// // グループ申込での個人選択画面へのルート
+// Route::get('group' , [IndexController::class, 'group'])->name('group');
+// // 各個人の誓約書の画面へのルート
+// Route::get('promise' , [IndexController::class , 'promise'])->name('promise');
+// // Park　Catgories　DB　の初期化
+// Route::get('init' , [IndexController::class , 'init'])->name('init');
 

@@ -10,9 +10,9 @@
 </head>
 <body>
 <header>
-        <h5 class="m-2">三河高原トレイルランニングレース　大会運営支援システム</h5>
-        <hr>
-    </header>
+    <h5 class="m-2">三河高原トレイルランニングレース　大会運営支援システム</h5>
+    <hr>
+</header>
 
 <!-- // バリデーションエラーの表示 -->
 @if ($errors->any())
@@ -25,77 +25,76 @@
     </div>
 @endif
 
-    <!-- 戻るボタン -->
-    <div class="w-50">
+<!-- 戻るボタン -->
+<div class="w-50">
     <div class="text-end">
         <a href=" {{ url('admin/') }}" class="btn btn-primary m-1">戻る</a>
     </div>
-    </div>
-
 </div>
-    <script>
+<script>
     function goBack(){ window.history.back(); }
-    </script>
-<div class="container">
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card">
-        <div class="card-body text-center">
-            <h5 class="card-title ">新規参加者追加</h5>
-            <hr> <!-- <hr> 水平線 -->
+</script>
 
-    <form action=" {{ url('admin/create_newplayer') }} " method="post" >
-    @csrf
-    
-    <div class="m-2">
-    <label>ナンバー：</label>
-    <input type="text", name="zekken" class="bg-info">
-    </div>
-    <div class="m-2">
-        <label>参加クラス：</label>
-        <select name="category_id" class="bg-info">
-        <option value="">指定なし</option>
-        @foreach($categories as $category)
-            <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-        @endforeach
-    </select>
-    </div>
-    <div class="m-2">
-    <label>氏名:</label>
-    <input type="text" , name="name" class="bg-info">
-    </div>
-    <div class="m-2">
-    <label>email:</label>
-    <input type="email"  , name="email" class="bg-info">
-    <div class="m-2">
-    <label>駐車場:</label>
-    <select name="park_id" class="bg-info" >
-        <option value="">指定なし</option>
-        @foreach($parks as $park)
-            <option value="{{ $park->id }}">{{ $park->park_name}}</option>
-    @endforeach
-    </select>
-    </div>
-    <div class="m-2">
-    <label>バス券:</label>
-    <select name="bus" class="bg-info">
-        <option value="">指定なし</option>
-        <option value="1">バス券あり</option>
-    </select>
-    </div>
-    <button type="submit" class="btn btn-primary m-3" >登録</button>
-    </form>
-    </div>
-          </div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title ">新規参加者追加</h5>
+                    <hr> <!-- <hr> 水平線 -->
+
+                    <form action=" {{ url('admin/create_newplayer') }} " method="post" >
+                    @csrf
+                    
+                        <div class="m-2">
+                            <label>ナンバー：</label>
+                            <input type="text", name="zekken" class="bg-info">
+                        </div>
+                        <div class="m-2">
+                            <label>参加クラス：</label>
+                            <select name="category_id" class="bg-info">
+                                <option value="">指定なし</option>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="m-2">
+                            <label>氏名:</label>
+                            <input type="text" , name="name" class="bg-info">
+                        </div>
+                        <div class="m-2">
+                            <label>email:</label>
+                            <input type="email"  , name="email" class="bg-info">
+                        <div class="m-2">
+                            <label>駐車場:</label>
+                            <select name="park_id" class="bg-info" >
+                                <option value="">指定なし</option>
+                                @foreach($parks as $park)
+                                    <option value="{{ $park->id }}">{{ $park->park_name}}</option>
+                                @endforeach
+                        </select>
+                        </div>
+                        <div class="m-2">
+                            <label>バス券:</label>
+                            <select name="bus" class="bg-info">
+                                <option value="">指定なし</option>
+                                <option value="1">バス券あり</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary m-3" >登録</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-  </div>
-
-  <footer>
-  <hr>
-  <div class = "text-end">
-  Mikawa Highland Trailrunning Race
 </div>
+
+<footer>
+    <hr>
+    <div class = "text-end">
+        Mikawa Highland Trailrunning Race
+    </div>
 </footer>
 
 </body>

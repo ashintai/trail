@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Mail;
 
 class LoginController extends Controller
 {
-    //ログインページの表示
+  //ログインページの表示
   public function index()
   {
     if (Auth::guard('players')->user()){
@@ -27,7 +27,6 @@ class LoginController extends Controller
     //ログイン処理
   public function login(Request $request)
   {
-  
     $email = $request->email;
     $password = $request->password;
 
@@ -75,10 +74,10 @@ class LoginController extends Controller
 
     //ユーザー情報が見つかったらログイン
     if (Auth::guard('players')->attempt($credentials)) {
-      //ログイン後に表示するページにリダイレクト
-      return redirect()->route('player.dashboard')->with([
-        'login_msg' => 'ログインしました。',
-      ]);
+        //ログイン後に表示するページにリダイレクト
+        return redirect()->route('player.dashboard')->with([
+            'login_msg' => 'ログインしました。',
+        ]);
     }
 
     //ログインできなかったときに元のページに戻る
@@ -87,24 +86,24 @@ class LoginController extends Controller
     ])->withInput();
   }
 
-  //ログアウト処理
-  public function logout(Request $request)
-  {
-    Auth::guard('players')->logout();
-    $request->session()->regenerateToken();
+    //ログアウト処理
+    public function logout(Request $request)
+    {
+        Auth::guard('players')->logout();
+        $request->session()->regenerateToken();
 
-    //ログインページにリダイレクト
-    return redirect()->route('player.login.index')->with([
-      'logout_msg' => 'ログアウトしました',
-    ]);
-  } 
+        //ログインページにリダイレクト
+        return redirect()->route('player.login.index')->with([
+            'logout_msg' => 'ログアウトしました',
+        ]);
+    } 
 
 
-// 乱数で４桁のパスコードを生成
-public function generateRandomNumber()
-{
-    $randomNumber = random_int(1000, 9999);
-    return $randomNumber;
-}
+    // 乱数で４桁のパスコードを生成
+    public function generateRandomNumber()
+    {
+        $randomNumber = random_int(1000, 9999);
+        return $randomNumber;
+    }
 
 }

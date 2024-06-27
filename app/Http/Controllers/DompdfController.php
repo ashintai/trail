@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Barryvdh\DomPDF\Facade\Pdf; 
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -12,9 +11,9 @@ use Illuminate\Http\Request;
 
 class DompdfController extends Controller
 {
-    //
-    public function generatePDF(Request $request){
-
+    //PDFの生成
+    public function generatePDF(Request $request)
+    {
         // 画像データの準備
         $format = public_path('images/parkticket.jpg') ;
         $format_data = base64_encode(file_get_contents($format));
@@ -30,12 +29,11 @@ class DompdfController extends Controller
         
         // 必要最低限のフォントのみをPDFへ埋め込み設定
         $pdf->setOptions([
-        'isFontSubsettingEnabled' => true, // 必要最低限のフォントのみを埋め込む
-        'defaultFont' => 'Helvetica', // デフォルトフォントを設定
+            'isFontSubsettingEnabled' => true, // 必要最低限のフォントのみを埋め込む
+            'defaultFont' => 'Helvetica', // デフォルトフォントを設定
         ]);
 
         // PDFファイルを生成してWebへ表示
         return $pdf->stream('駐車券.pdf');
-
     }
 }

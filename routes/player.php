@@ -17,5 +17,4 @@ Route::prefix('player')->middleware('auth.players:players')->group(function(){
   Route::get('/member/{id}' , [HomeController::class , 'each'])->name('player.member.each/{each}');
   Route::post('/promise/{id}' , [HomeController::class , 'promise'])->name('player.promise');
   Route::get('/park/{id}' , [HomeController::class , 'park'])->name('player.park/{park}');
-
 });

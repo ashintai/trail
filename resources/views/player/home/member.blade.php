@@ -7,42 +7,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>三河高原トレラン</title>
-
 </head>
 
 <body>
 <header>
-        <h5 class="m-2">三河高原トレイルランニングレース</h5>
-        <div class="text-end">
-    <a href="/player/logout">ログアウト</a>
-  </div>
-        <hr>
-    </header>
+    <h5 class="m-2">三河高原トレイルランニングレース</h5>
+    <div class="text-end">
+        <a href="/player/logout">ログアウト</a>
+    </div>
+    <hr>
+</header>
 
-    <div class="container">
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-9">
-          <div class="card">
-            <div class="card-body text-center">
-              <h5 class="card-title ">グループ申込メンバー選択</h5>
-              <hr> <!-- <hr> 水平線 -->
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title ">グループ申込メンバー選択</h5>
+                    <hr> <!-- <hr> 水平線 -->
 
-    @foreach($member as $mem)
-    {{$mem->name}} 
-    <a href="{{ url('player/member/' . $mem->id) }}">選択</a>
-    <br>
-    @endforeach
-
-    </div>
-          </div>
+                    @foreach($member as $mem)
+                        {{$mem->name}} 
+                        <a href="{{ url('player/member/' . $mem->id) }}">選択</a>
+                        <br>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
-  </div>
-  <footer>
-  <hr>
-  <div class = "text-end">
-  Mikawa Highland Trailrunning Race
 </div>
+
+<footer>
+    <hr>
+    <div class = "text-end">
+        Mikawa Highland Trailrunning Race
+    </div>
 </footer>
 
 </body>

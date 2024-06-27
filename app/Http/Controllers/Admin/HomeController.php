@@ -56,7 +56,6 @@ class HomeController extends Controller
         $append_param = ['zekken' => $zekken , 'name' => $name , 'category_id' => $category_id , 'park_id' => $park_id , 'bus' => $bus , 'comment' => $comment ];
         $data=$query->paginate(5);
         $data -> appends($append_param);
-
         
         //参加クラス全種の名前を渡す
         $categories=Category::all();
@@ -108,7 +107,7 @@ class HomeController extends Controller
             'zekken.required' => 'ナンバーは必須です',
             ];
         
-            //  バリデーションの実行
+        //  バリデーションの実行
         $validated = $request->validate($rules , $messages);
 
         // バリデーション後の参加者の登録
@@ -132,13 +131,11 @@ class HomeController extends Controller
         if(!empty($pass)){
             $player->password = Hash::make( $pass );
         }
-
         
-        
+        // テーブルへ書き戻し
         $player->save();
 
         return redirect( 'admin' );
-
     }
 
     // 新規参加者
@@ -190,7 +187,7 @@ class HomeController extends Controller
 
         $player->save();
 
-    return redirect( 'admin' );
+        return redirect( 'admin' );
     }
 
     //
@@ -252,44 +249,43 @@ class HomeController extends Controller
     // 駐車場の初期設定
     public function ini_parks(Request $request)
     {
-     // 設定を読み込む配列
-    $parks = [];
+         // 設定を読み込む配列
+        $parks = [];
     
-    // 入力値を配列へ取り込み
-    for ($num = 1 ; $num <= Constants::MAX_PARK ; $num++){
-     $key_park = "park_" . $num;
-     $key_capa = "capa_" . $num;
-     if ( $request->$key_park !== null ){
-        if( $request->$key_capa !== null ){
-            $parks[] = array('name'=>$request->{$key_park} , 'capa' => $request->{$key_capa});
-        }else{
-            $parks[] = array('name'=>$request->{$key_park} , 'capa' => 0);
+        // 入力値を配列へ取り込み
+        for ($num = 1 ; $num <= Constants::MAX_PARK ; $num++){
+            $key_park = "park_" . $num;
+            $key_capa = "capa_" . $num;
+            if ( $request->$key_park !== null ){
+                if( $request->$key_capa !== null ){
+                    $parks[] = array('name'=>$request->{$key_park} , 'capa' => $request->{$key_capa});
+                }else{
+                    $parks[] = array('name'=>$request->{$key_park} , 'capa' => 0);
+                }
+            }
         }
-     }
-    }
 
-     // 駐車場の設定がひとつもない場合の処理
-     if(empty($parks)){
+        // 駐車場の設定がひとつもない場合の処理
+        if(empty($parks)){
+            return back()->withErrors([
+                'ini' => ['駐車場の入力がありません'],
+            ]);
+        }
+
+        // 駐車場テーブルの書き換え
+        // 一旦categories テーブルの全レコードを消去
+        Park::truncate();
+        // 配列を順次create
+        foreach( $parks as $park){
+                $newPark = new Park();
+                $newPark->park_name = $park['name'];
+                $newPark->capacity = $park['capa']; 
+                $newPark->save();
+        }
+    
         return back()->withErrors([
-            'ini' => ['駐車場の入力がありません'],
-          ]);
-    }
-
-    // 駐車場テーブルの書き換え
-    // 一旦categories テーブルの全レコードを消去
-    Park::truncate();
-
-    // 配列を順次create
-    foreach( $parks as $park){
-            $newPark = new Park();
-            $newPark->park_name = $park['name'];
-            $newPark->capacity = $park['capa']; 
-            $newPark->save();
-        }
-    
-    return back()->withErrors([
-        'ini' => ['駐車場の設定を変更しました。'],
-      ]);
+            'ini' => ['駐車場の設定を変更しました。'],
+        ]);
     }
 
     // 全エントリーデータをCSVファイルから読み取り
@@ -402,14 +398,14 @@ class HomeController extends Controller
                
                 // DBへ挿入
                 $player->save();
-                }
+            }
             // ファイルを閉じる        
             fclose($fp);
         }else{
             // ここにCSVファイルがなかったときの処理
             return back()->withErrors([
                 'ini' => ['CSVファイルがありません'],
-              ]);
+            ]);
         }
 
         // メッセージの調整
@@ -419,7 +415,7 @@ class HomeController extends Controller
 
         return back()->withErrors([
             'ini' => [ $message],
-          ]);
+        ]);
 
     }
     
@@ -431,15 +427,15 @@ class HomeController extends Controller
 
         // 入力値を配列へ取り込み
         for ($num = 1 ; $num <= Constants::MAX_STAFF ; $num++){
-        $key_email = "staff_email_" . $num;
-        $key_pass = "staff_pass_" . $num;
-        // emailとパスワード両方が入力されている場合のみ配列に加える
-        if ( $request->$key_email !== null ){
-           if( $request->$key_pass !== null ){
-               $staffs[] = array('email'=>$request->{$key_email} , 'pass' => $request->{$key_pass});
-           }
+            $key_email = "staff_email_" . $num;
+            $key_pass = "staff_pass_" . $num;
+            // emailとパスワード両方が入力されている場合のみ配列に加える
+            if ( $request->$key_email !== null ){
+                if( $request->$key_pass !== null ){
+                    $staffs[] = array('email'=>$request->{$key_email} , 'pass' => $request->{$key_pass});
+                }
+            }
         }
-       }
    
        //スタッフテーブルのクリア
         Staff::truncate();
@@ -452,13 +448,8 @@ class HomeController extends Controller
             $newStaff->save();
         }
 
-return back()->withErrors([
-'ini' => ['スタッフの設定を行いました'],
-]);
-
-
-
-
+        return back()->withErrors([
+            'ini' => ['スタッフの設定を行いました'],
+        ]);
     }
-   
 }

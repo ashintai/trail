@@ -26,8 +26,6 @@ class PassEmail extends Mailable
         //送信するパスワード
         $this->password = $password;
     }
-
-    
     /**
      * Get the message envelope.
      * メールのタイトルの設定
@@ -38,7 +36,6 @@ class PassEmail extends Mailable
             subject: '三河高原トレイルランイング　パスワードのお知らせ',
         );
     }
-
     /**
      * Get the message content definition.
      * メール本文の設定　パスワードを入れる

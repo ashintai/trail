@@ -11,46 +11,45 @@
 
 <body>
 <header>
-  <h5 class="m-2" >三河高原トレイルランニングレース　大会運営支援システム</h5>
-<hr>
+    <h5 class="m-2" >三河高原トレイルランニングレース　大会運営支援システム</h5>
+    <hr>
 </header>
 
-  @error('login')
-  <p>{{ $message }}</p>
-  @enderror
+@error('login')
+<p>{{ $message }}</p>
+@enderror
 
-  <div class="container">
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-          <div class="card">
-            <div class="card-body text-center">
-              <h5 class="card-title ">スタッフログイン</h5>
-              <hr> <!-- <hr> 水平線 -->
-                <form method="POST" action="/staff/login">
-                  @csrf
-                  <div class="m-2">
-                    <label>メールアドレス</label>
-                    <input type="email" name="email" class="bg-info" value="{{ old('email') }}" ><br>
-                  </div>
-                  <div>
-                    <label>パスワード</label>
-                    <input type="password" name="password" class="bg-info" ><br>
-                  </div>
-                  <button type="submit" class=" btn btn-primary m-3 ">ログイン</button>
-                </form>
-             </div>
-          </div>
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title ">スタッフログイン</h5>
+                    <hr> <!-- <hr> 水平線 -->
+                    <form method="POST" action="/staff/login">
+                        @csrf
+                        <div class="m-2">
+                            <label>メールアドレス</label>
+                            <input type="email" name="email" class="bg-info" value="{{ old('email') }}" ><br>
+                        </div>
+                        <div>
+                            <label>パスワード</label>
+                            <input type="password" name="password" class="bg-info" ><br>
+                        </div>
+                        <button type="submit" class=" btn btn-primary m-3 ">ログイン</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-  </div>
-
-  <footer>
-  <hr>
-  <div class = "text-end">
-  Mikawa Highland Trailrunning Race
 </div>
-</footer>
 
+<footer>
+    <hr>
+    <div class = "text-end">
+        Mikawa Highland Trailrunning Race
+    </div>
+</footer>
 
 </body>
 </html>

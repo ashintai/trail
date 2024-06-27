@@ -14,35 +14,35 @@
 <hr>
 </header>
 
-  @error('login')
-  <p>{{ $message }}</p>
-  @enderror
+@error('login')
+    <p>{{ $message }}</p>
+    @enderror
 
-  <div class="container">
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-          <div class="card">
-            <div class="card-body text-center">
-              <h5 class="card-title ">参加者ログイン</h5>
-              <hr> <!-- <hr> 水平線 -->
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title ">参加者ログイン</h5>
+                    <hr> <!-- <hr> 水平線 -->
 
-                <form method="POST" action="/player/login">
-                  @csrf
-                  <div class="m-2">
-                  <label>メールアドレス</label>
-                  <input type="email" name="email" class="bg-info" value="{{ old('email') }}"><br>
-                  </div>
-                  <div class="m-2">
-                  <label>パスコード</label>
-                  <input type="password" name="password" class="bg-info"><br>
-                  </div>
-                  <button type="submit" class="btn btn-primary m-3">ログイン</button>
-                </form>
-              </div>
-          </div>
+                    <form method="POST" action="/player/login">
+                    @csrf
+                        <div class="m-2">
+                            <label>メールアドレス</label>
+                            <input type="email" name="email" class="bg-info" value="{{ old('email')}}"><br>
+                        </div>
+                        <div class="m-2">
+                            <label>パスコード</label>
+                            <input type="password" name="password" class="bg-info"><br>
+                        </div>
+                        <button type="submit" class="btn btn-primary m-3">ログイン</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-  </div>
+</div>
 
 <div class="ms-3">
     初回ログイン時は、ご登録のメールアドレスのみ入力し（パスコードは空欄のまま）「ログイン」をタップしてください。<br>
@@ -54,14 +54,13 @@
     <br>
     ご不明な点あれば、以下までメールでお問合せください。<br>
     三河高原トレイルランニング大会実行委員会　事務局　info@mikawatrail.com<br>
-
 </div>
 
 <footer>
-  <hr>
-  <div class = "text-end">
-  Mikawa Highland Trailrunning Race
-</div>
+    <hr>
+    <div class = "text-end">
+        Mikawa Highland Trailrunning Race
+    </div>
 </footer>
 
 </body>

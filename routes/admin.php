@@ -22,6 +22,4 @@ Route::prefix('admin')->middleware('auth.admins:admins')->group(function(){
   Route::post('/ini_categories', [HomeController::Class , 'ini_categories'])->name('admin.ini_categories');
   Route::post('/ini_parks' , [HomeController::Class , 'ini_parks'])->name('admin.ini_parks');
   Route::post('/staffaccount' , [HomeController::Class , 'staffaccount'])->name('admin.staffaccount');
-
-
 });
