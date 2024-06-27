@@ -24,12 +24,15 @@
 </header>
    
 <!-- 戻るボタン -->
+<!-- グループ申込の場合だけ表示 -->
+@if ( !empty($player->group_id ))
 <div class="text-end">
     <a href="javascript:void(0)" onclick="goBack()" class="btn btn-primary m-1">戻る</a>
 </div>
 <script>
     function goBack(){ window.history.back(); }
 </script>
+@endif
 
  <!-- 誓約書にサイン済の場合 -->
  @if( $player->promise !== null)

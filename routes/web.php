@@ -29,9 +29,8 @@ Route::get('/', function () {
 //管理者の設定
 Route::post('/admin_pass' , [LoginController::class , 'admin_pass'])->name('admin_pass');
 
-
-// // ＰＤＦ１テスト
-// Route::get('dompdf/pdf' , [DompdfController::class , 'generatePDF']);
+// 駐車券ＰＤＦ発行
+Route::get('dompdf/pdf' , [DompdfController::class , 'generatePDF']);
 
 // // 参加者一覧へのルート
 // Route::get('/index' , [IndexController::class,'index'])->name('index');
