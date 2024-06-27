@@ -84,7 +84,7 @@ class LoginController extends Controller
     //ログインできなかったときに元のページに戻る
     return back()->withErrors([
       'login' => ['ログインに失敗しました'],
-    ]);
+    ])->withInput();
   }
 
   //ログアウト処理
