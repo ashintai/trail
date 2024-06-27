@@ -47,7 +47,8 @@
                     canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
                     const imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
                     const code = jsQR(imageData.data, imageData.width, imageData.height, {
-                        inversionAttempts: "attemptBoth",
+                        inversionAttempts: "onlyInvert",
+                        // "dontInvert", "onlyInvert", "attemptBoth"のどれか
                     });
 
                     if (code) {
