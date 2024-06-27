@@ -30,7 +30,7 @@
                   @csrf
                   <div class="m-2">
                     <label>メールアドレス</label>
-                    <input type="email" name="email" class="bg-info" ><br>
+                    <input type="email" name="email" class="bg-info" value="{{ old('email') }}" ><br>
                   </div>
                   <div>
                     <label>パスワード</label>
