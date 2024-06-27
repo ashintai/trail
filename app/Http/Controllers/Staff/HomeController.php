@@ -95,11 +95,22 @@ use App\Models\Park;
   
       }
 
-    //   QRコード読み取り
+    //   QRコード読み取り画面へ
     public function qrreader()
     {
         return view('staff.home.qrreader');
     }
+
+    // 読み取ったQRコードの処理
+    public function scan(Request $request)
+    {
+        // 読み取ったQRの内容を$requestから受け取る
+        $qrContent = $request->input('qr_content');
+
+        return view( 'staff.home.qrtest' , compact('qrContent'));
+        
+    }
+
   }
 
 

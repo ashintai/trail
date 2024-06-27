@@ -15,5 +15,7 @@ Route::prefix('staff')->middleware('auth.staffs:staffs')->group(function(){
   Route::get('/dashboard' , [HomeController::class , 'dashboard'])->name('staff.index');
   Route::get('/detail/{id}' ,[HomeController::Class , 'detail'])->name('staff.detail/{detail}');
   Route::post('/update' , [HomeController::Class , 'update'])->name('staff.update');
+  // QRコード読み取り関係のルート
   Route::get('/qrreader', [HomeController::class , 'qrreader'])->name('staff.qrreader');
+  Route::post('/scan' , [HomeController::class , 'scan'])->name('staff.scan');
 });
