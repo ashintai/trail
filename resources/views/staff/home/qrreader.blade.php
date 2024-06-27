@@ -67,6 +67,11 @@
 
     <!-- QRコード読み取り　ここまで -->
 
+<!-- 戻るボタン -->
+<div class="text-center">
+    <a href=" {{ url('staff/') }}" class="btn btn-primary m-1">戻る</a>
+</div> 
+
 <!-- フッター -->
 <footer>
   <hr>

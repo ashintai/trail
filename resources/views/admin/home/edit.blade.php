@@ -15,11 +15,10 @@
 </header>
 
 <!-- 戻るボタン -->
-<div class="w-50">
-    <div class="text-end">
-        <a href=" {{ url('admin/') }}" class="btn btn-primary m-1">戻る</a>
-    </div>
-</div> 
+<div class="text-end">
+    <a href=" {{ url('admin/') }}" class="btn btn-primary m-1">戻る</a>
+</div>
+
 
 <!-- // バリデーションエラーの表示 -->
 @if ($errors->any())

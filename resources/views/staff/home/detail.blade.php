@@ -15,10 +15,8 @@
 </header>
     
 <!-- 戻るボタン -->
-<div class="w-50">
-    <div class="text-end">
-        <a href=" {{ url('staff/') }}" class="btn btn-primary m-1">戻る</a>
-    </div>
+<div class="text-end">
+    <a href=" {{ url('staff/') }}" class="btn btn-primary m-1">戻る</a>
 </div>
    
 <!-- // バリデーションエラーの表示 -->
