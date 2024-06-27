@@ -52,6 +52,7 @@
 
                     if (code) {
                         console.log("Found QR code", code);
+                        alert("QR Code Data:" + code.data);
                         // QRコードが見つかった場合の処理をここに書く
                     }
                 }
