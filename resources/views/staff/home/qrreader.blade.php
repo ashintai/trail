@@ -6,6 +6,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- QRデータをJavascriptからPOST送信する際に必要なcsrfの指定 -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>スタッフ＞QR読取り</title>
 </head>
 
@@ -55,6 +57,29 @@
                         console.log("Found QR code", code);
                         alert("QR Code Data:" + code.data);
                         // QRコードが見つかった場合の処理をここに書く
+                        // JavaScriptの変数にデータを格納
+                        const data = {
+                           qrcode: code.data,
+                           };
+                        // データを自動的にPOST送信する
+                        fetch('/qrset', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                            },
+                            body: JSON.stringify(data)
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('Success:', data);
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        });
+
+
+
                     }
                 }
                 requestAnimationFrame(tick);
@@ -62,6 +87,13 @@
         });
     </script>
     <!-- QRコード読み取り　ここまで -->
+
+
+    <script>
+        
+
+        
+    </script>
 
 <!-- フッター -->
 <footer>

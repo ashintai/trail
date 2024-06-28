@@ -6,11 +6,10 @@
     <title>QR-TEST</title>
 </head>
 <body>
-    
-QR よみました
+QRコード読み取り結果　確認画面
 <br>
 
-{{ $qrContent }}
+{{ $data }}
 
 <br>
 
