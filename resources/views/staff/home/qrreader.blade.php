@@ -67,7 +67,7 @@
 
                         // Axiosによる非同期通信
                         // 処理先のurl
-                        const url = '/qrset';
+                        const url = 'staff/qrset';
                         // 読み取ったQRデータ
                         const data = {
                             qrcode: code.data,
