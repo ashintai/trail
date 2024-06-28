@@ -106,14 +106,17 @@ class HomeController extends Controller
         return view( 'staff.home.qrtest' , compact('qrContent'));
     }
 
-    //読み取ったQRコードにより、テーブルの受付済みにフラグを立てる
+    //読み取ったQRコードにより、非同期でテーブルの受付済みにフラグを立てる
     public function qrset(Request $request)
     {
         //QRコードデータを変数でうける
         $data=$request->data;
 
-        // 読取り結果テスト画面で移行
-        return view( 'staff.home.qrtest' , compact('data'));
+        // 読み取ったQR内容をそのまま返す
+        return [
+            'result' => true,
+            'name' => $data];
+        // return view( 'staff.home.qrtest' , compact('data'));
     }
 }
 

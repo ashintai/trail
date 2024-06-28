@@ -17,23 +17,25 @@
   <hr>
 </header>
 
-<body>
 <!-- 戻るボタン -->
-<div class="text-ens">
-    <a href=" {{ url('staff/') }}" class="btn btn-primary m-1">戻る</a>
+<div class="text-end">
+    <a href="{{ url('staff/') }}" class="btn btn-primary m-1">戻る</a>
 </div> 
 
-<body>
     <canvas id="canvas" style="width:100%;"></canvas>
 
     <!-- jsQRのCDN -->
     <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const video = document.createElement('video');
             const canvasElement = document.getElementById('canvas');
             const canvas = canvasElement.getContext('2d');
+
+            // Axios非同期POST通信でのcsrf設定
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken;
 
             navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } }).then(function(stream) {
                 video.srcObject = stream;
@@ -41,6 +43,9 @@
                 video.play();
                 requestAnimationFrame(tick);
             });
+
+            // Axiosによる非同期通信の際にサーバー側処理中は読み飛ばすためのフラグ初期設定
+            let checking = false;
 
             function tick() {
                 if (video.readyState === video.HAVE_ENOUGH_DATA) {
@@ -53,33 +58,71 @@
                         // "dontInvert", "onlyInvert", "attemptBoth"のどれか
                     });
 
+
+                    
                     if (code) {
                         console.log("Found QR code", code);
-                        alert("QR Code Data:" + code.data);
+                        // alert("QR Code Data:" + code.data);
                         // QRコードが見つかった場合の処理をここに書く
-                        // JavaScriptの変数にデータを格納
+
+                        // Axiosによる非同期通信
+                        // 処理先のurl
+                        const url = '/qrset';
+                        // 読み取ったQRデータ
                         const data = {
-                           qrcode: code.data,
-                           };
-                        // データを自動的にPOST送信する
-                        fetch('/qrset', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                            },
-                            body: JSON.stringify(data)
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            console.log('Success:', data);
-                        })
-                        .catch((error) => {
-                            console.error('Error:', error);
-                        });
+                            qrcode: code.data,
+                            };
+                        
+                        if(!checking){
+                            // 非同期処理中の場合はスキップ
+                            checking = true;
+
+                            axios.post(url, {qrcode : data})
+                            // axiosでPOST送信
+                            .then((response) => {
+                                const result = response.data.result;
+                                // 非同期で帰ってきた結果の受取
+                                if( result ){
+                                    // 結果resultがtrueのとき
+                                    const name = response.data.name;
+                                    // 結果からnameデータを取り出し
+                                    alert( name + 'さんを受付ました');
+                                    // メッセージを表示
+                                }else{
+                                    // 結果resultがfalseのとき
+                                    alert('このQRは無効です');
+                                }
+                            })
+                            .catch((error) => {})
+                            // 非同期がエラーで帰ったときは何もしない
+                            .then(() => {
+                                checking = false;
+                                // 非同期処理が終わったら、フラグを下す
+                            })
+
+                        }
 
 
-
+                        // // JavaScriptの変数にデータを格納
+                        // const data = {
+                        //    qrcode: code.data,
+                        //    };
+                        // // データを自動的にPOST送信する
+                        // fetch('/qrset', {
+                        //      headers: {
+                        //         'Content-Type': 'application/json',
+                        //         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        //     },
+                        //     body: JSON.stringify(data)
+                        // })
+                        // .then(response => response.json())
+                        // .then(data => {
+                        //     console.log('Success:', data);
+                        // })
+                        // .catch((error) => {
+                        //     console.error('Error:', error);
+                        // });
+ 
                     }
                 }
                 requestAnimationFrame(tick);
@@ -87,13 +130,6 @@
         });
     </script>
     <!-- QRコード読み取り　ここまで -->
-
-
-    <script>
-        
-
-        
-    </script>
 
 <!-- フッター -->
 <footer>
