@@ -22,7 +22,14 @@
     <a href="{{ url('staff/') }}" class="btn btn-primary m-1">戻る</a>
 </div> 
 
-    <canvas id="canvas" style="width:100%;"></canvas>
+<!-- メッセージを表示欄 -->
+<div class="container text-center"> 
+    <h4 >QRによる受付</h4>
+    <p id="qr_message" >カメラを起動しQRコードを読み取ってください</label>
+</div>
+
+<!-- QR読取り領域 -->
+ <canvas id="canvas" style="width:90%;"></canvas>
 
     <!-- jsQRのCDN -->
     <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
@@ -83,8 +90,10 @@
                                 if( result ){
                                     // 結果resultがtrueのとき
                                     const message = response.data.res;
-                                    // 結果からnameデータを取り出し
-                                    alert( message );
+                                    // 結果からメッセージを取り出し
+                                    var paragraph = document.getElementById('qr_message');
+                                    paragraph.textContent = message;    
+                                    // alert( message );
                                     // メッセージを表示
                                 }else{
                                     // 結果resultがfalseのとき
