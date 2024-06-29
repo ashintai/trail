@@ -136,7 +136,7 @@
                     <option value="">駐車券なし</option>
                     @foreach( $parks as $park)
                         @if( $one->park_id === $park->id )
-                            option value="{{ $park->id }}" selected >{{ $park->park_name }}</option>
+                            <option value="{{ $park->id }}" selected >{{ $park->park_name }}</option>
                         @else
                             <option value="{{ $park->id }}" >{{ $park->park_name}}</option>
                         @endif
