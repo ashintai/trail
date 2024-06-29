@@ -84,7 +84,7 @@
                                     // 結果resultがtrueのとき
                                     const name = response.res.message;
                                     // 結果からnameデータを取り出し
-                                    alert( message );
+                                    alert( name );
                                     // メッセージを表示
                                 }else{
                                     // 結果resultがfalseのとき
