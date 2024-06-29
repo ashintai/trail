@@ -15,4 +15,6 @@ class Constants
     const MAX_PARK = 8;
     // スタッフのアカウント数上限数
     const MAX_STAFF = 20;
+    // 一覧表示ページネーションの行数
+    const MAX_PAGE = 20;
 }

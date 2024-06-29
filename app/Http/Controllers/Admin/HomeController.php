@@ -54,7 +54,7 @@ class HomeController extends Controller
 
         // ページネーションへ検索条件を引き継ぐ
         $append_param = ['zekken' => $zekken , 'name' => $name , 'category_id' => $category_id , 'park_id' => $park_id , 'bus' => $bus , 'comment' => $comment ];
-        $data=$query->paginate(5);
+        $data=$query->paginate(Constants::MAX_PAGE);
         $data -> appends($append_param);
         
         //参加クラス全種の名前を渡す

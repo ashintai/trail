@@ -95,10 +95,11 @@ $key_comment = $append_param['comment'];
         <br>
 
         <!-- QRコード読み取り機能 -->
-        <a href="{{ url('staff/qrreader')}} " class="btn btn-primary mt-2">QRコード読取</a>
-        <br>
+        <div class= "m-2">
+            <a href="{{ url('staff/qrreader')}} " class="btn btn-primary mt-2">QRコード読取</a>
+        </div>
 
-      </div>
+    </div>
 
         <!-- 画面右側9/12は一覧表示エリア -->
         <div class="col-md-9 border">
