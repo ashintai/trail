@@ -29,7 +29,7 @@
 </div>
 
 <!-- QR読取り領域 -->
- <div class="test-center">
+ <div class="text-center">
  <canvas id="canvas" style="width:90%;"></canvas>
 </div>
     <!-- jsQRのCDN -->
