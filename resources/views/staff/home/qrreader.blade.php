@@ -29,8 +29,9 @@
 </div>
 
 <!-- QR読取り領域 -->
+ <div class="test-center">
  <canvas id="canvas" style="width:90%;"></canvas>
-
+</div>
     <!-- jsQRのCDN -->
     <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
@@ -64,9 +65,7 @@
                         inversionAttempts: "dontInvert",
                         // "dontInvert", "onlyInvert", "attemptBoth"のどれか
                     });
-
-
-                    
+                 
                     if (code) {
                         console.log("Found QR code", code);
                         // alert("QR Code Data:" + code.data);
