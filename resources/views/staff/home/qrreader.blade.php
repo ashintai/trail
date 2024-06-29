@@ -69,13 +69,13 @@
                         // 処理先のurl
                         const url = '/staff/qrset';
                         // 読み取ったQRデータ
-                        var code = code.data
+                        var qrCodeData = code.data;
                         
                         if(!checking){
                             // 非同期処理中の場合はスキップ
                             checking = true;
 
-                            axios.post(url, {data : code} )
+                            axios.post(url, {data : qrCodeData} )
                             // axiosでPOST送信
                             .then((response) => {
                                 const result = response.data.result;
