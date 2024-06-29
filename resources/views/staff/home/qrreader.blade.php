@@ -82,9 +82,9 @@
                                 // 非同期で帰ってきた結果の受取
                                 if( result ){
                                     // 結果resultがtrueのとき
-                                    const name = response.res.message;
+                                    const message = response.data.message;
                                     // 結果からnameデータを取り出し
-                                    alert( name );
+                                    alert( message );
                                     // メッセージを表示
                                 }else{
                                     // 結果resultがfalseのとき
