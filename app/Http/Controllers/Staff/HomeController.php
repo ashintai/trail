@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Player;
 use App\Models\Category;
 use App\Models\Park;
-use App\Constants\Constants;
+use App\Constants;
 
 class HomeController extends Controller
 {
