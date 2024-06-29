@@ -112,10 +112,39 @@ class HomeController extends Controller
         //QRコードデータを変数でうける
         $data=$request->data;
 
-        // 読み取ったQR内容をそのまま返す
+        // QRコードの内容は、　id,zekken
+        // カンマ区切りからidとzekkenを配列で取り出す
+        $qr_contents = explode(',' , $data);
+        $qr_id = isset($qr_contents[0]) ? $qr_contents[0] : null;
+        $qr_zekken = isset($qr_contents[1]) ? $qr_contents[1] :null;
+        
+        if ( !$qr_id || !$qr_zekken ){
+            // idかzekkenがない場合
+            $message = "このQRコードは使えません。(null)";
+        }else{
+            // id,zekkennともにある場合
+            $player = Player::find($qr_id);
+            if ( !$player){
+                // 該当するidがない場合
+                $message = "このQRコードは使えません。(id)";
+            }else{
+                if ( $player->zekken !== $qr_zekken){
+                    // id と zekken が一致しない
+                    $message = "このQRコードは使えません。(zek)";
+                }else{
+                    // idの参加者を受付済とする
+                    $player->reseption = "1";
+                    $player->save();
+                    $message = "ナンバー" . $player->zekken . $player->name . "を受付ました。";
+                }
+            }
+
+        }
+
+        // メッセージを返す
         return [
             'result' => true,
-            'name' => $data];
+            'res' => $message];
         // return view( 'staff.home.qrtest' , compact('data'));
     }
 }
