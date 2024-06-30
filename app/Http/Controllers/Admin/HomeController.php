@@ -84,15 +84,15 @@ class HomeController extends Controller
         $rules = [
             'category_id' => 'required|integer',
             'name' => 'required|string|max:255',
-            'zekken' => 'required|integer',
+            'zekken' => 'required|integer|unique:players,zekken',
             'email' => 'required|email',
             'park_id' => 'nullable|integer',
             'bus' => 'nullable|integer',
             'comment' => 'nullable|string',
-            'dns' => 'nullable|Integer',
-            'promise' => 'nullable|Integer',
-            'bus_ride' => 'nullable|Integer',
-            'reseption' => 'nullable|Integer',
+            'dns' => 'nullable|integer',
+            'promise' => 'nullable|integer',
+            'bus_ride' => 'nullable|integer',
+            'reseption' => 'nullable|integer',
             'phone' => 'nullable|string',
             'password' => 'nullable|string',
             ];
@@ -104,7 +104,8 @@ class HomeController extends Controller
             'email.required' => 'メールアドレスは必須です。',
             'email.email' => '有効なメールアドレスを入力してください。',
             'zekken.integer' => 'ナンバーは整数である必要があります。',
-            'zekken.required' => 'ナンバーは必須です',
+            'zekken.required' => 'ナンバーは必須です。',
+            'zekken.unique' => 'ナンバーが重複しています。',
             ];
         
         //  バリデーションの実行
