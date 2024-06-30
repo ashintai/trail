@@ -469,7 +469,7 @@ class HomeController extends Controller
         foreach( $staffs as $staff){
             $newStaff = new Staff();
             $newStaff->email = $staff['email'];
-            $newStaff->password = $staff['pass']; 
+            $newStaff->password = $staff['password']; 
             $newStaff->save();
         }
 
