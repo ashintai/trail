@@ -424,6 +424,9 @@ class HomeController extends Controller
     // スタッフアカウントの設定
     public function staffaccount(Request $request)
     {
+        // 終了メッセージの初期化
+        $message = 'スタッフの設定を行いました。';
+
         // 入力値を配列で受取
         $staffs = [];
 
@@ -431,14 +434,34 @@ class HomeController extends Controller
         for ($num = 1 ; $num <= Constants::MAX_STAFF ; $num++){
             $key_email = "staff_email_" . $num;
             $key_pass = "staff_pass_" . $num;
-            // emailとパスワード両方が入力されている場合のみ配列に加える
-            if ( $request->$key_email !== null ){
-                if( $request->$key_pass !== null ){
-                    $staffs[] = array('email'=>$request->{$key_email} , 'pass' => $request->{$key_pass});
+            // emailが入力されている場合のみ対象とする
+            if ( $request->{$key_email} ){
+                // emailがすでに登録済みか調べる
+                $newstaff = Staff::where('email', $request->{$key_email})->first();
+                // emailが登録済の場合
+                if( $newstaff ){
+                    if ( $request->{$key_pass} ){
+                        // パスワードが入力されている場合＝＞パスの変更
+                        $newpass = Hash::make($request->{$key_pass});
+                        // 新規配列へ加える
+                    }else{
+                        // パスワードが入力されていない＝＞現状維持
+                        $newpass = $newstaff->password;
+                    }
+                    // 新規配列へ加える
+                    $staffs[]= array( 'email'=>$request->{$key_email},'password'=>$newpass);
+                }else{
+                    // パスの入力がある場合
+                    if( $request->{$key_pass} ){
+                        $newpass = Hash::make($request->{$key_pass});
+                        // 新規配列へ加える
+                        $staffs[]= array( 'email'=>$request->{$key_email},'password'=>$newpass);
+                    }else{
+                        $message = "パスワード入力のない新規スタッフが登録されませんでした。";
+                    }
                 }
             }
         }
-   
        //スタッフテーブルのクリア
         Staff::truncate();
 
@@ -446,12 +469,12 @@ class HomeController extends Controller
         foreach( $staffs as $staff){
             $newStaff = new Staff();
             $newStaff->email = $staff['email'];
-            $newStaff->password = Hash::make($staff['pass']); 
+            $newStaff->password = $staff['pass']; 
             $newStaff->save();
         }
 
         return back()->withErrors([
-            'ini' => ['スタッフの設定を行いました'],
+            'ini' => [ $message ],
         ]);
     }
 
