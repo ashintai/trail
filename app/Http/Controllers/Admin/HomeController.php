@@ -452,4 +452,11 @@ class HomeController extends Controller
             'ini' => ['スタッフの設定を行いました'],
         ]);
     }
+
+    // 参加者テーブルの消去
+    public function admin_clear()
+    {
+        Player::truncate();
+        return redirect( '/' );
+    }
 }

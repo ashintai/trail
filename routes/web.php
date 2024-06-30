@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\DompdfController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,8 @@ Route::get('/', function () {
 
 //管理者の設定
 Route::post('/admin_pass' , [LoginController::class , 'admin_pass'])->name('admin_pass');
+// 参加者テーブルの消去
+Route::post('/admin_clear' , [HomeController::class , 'admin_clear'])->name('admin_clear');
 
 // 駐車券ＰＤＦ発行
 Route::get('dompdf/pdf' , [DompdfController::class , 'generatePDF']);

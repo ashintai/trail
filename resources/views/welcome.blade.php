@@ -28,6 +28,13 @@
         <input type="text" name="admin_pass" >
         <button type="submit">設定</button>
     </form>
+
+    <form action="{{ url('/admin_clear') }}" method="POST">
+        @csrf
+        <button type="submit">消去</button>
+    </form>
+
+        <br><br>
         <div class = "ms-4">
             <h3>TECH.IS 自主制作</h3>
             <br>
