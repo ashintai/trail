@@ -84,7 +84,7 @@ class HomeController extends Controller
         $rules = [
             'category_id' => 'required|integer',
             'name' => 'required|string|max:255',
-            'zekken' => 'required|integer|unique:players,zekken',
+            'zekken' => 'required|integer',
             'email' => 'required|email',
             'park_id' => 'nullable|integer',
             'bus' => 'nullable|integer',
@@ -105,7 +105,6 @@ class HomeController extends Controller
             'email.email' => '有効なメールアドレスを入力してください。',
             'zekken.integer' => 'ナンバーは整数である必要があります。',
             'zekken.required' => 'ナンバーは必須です。',
-            'zekken.unique' => 'ナンバーが重複しています。',
             ];
         
         //  バリデーションの実行
