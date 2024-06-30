@@ -16,24 +16,43 @@
         </style>
     </head>
     
-     <!-- 管理者のemailとpassの設定 -->
+    <body>
+    <!-- 管理者のemailとpassの設定 -->
     <form action="{{ url('/admin_pass') }}" method="POST">
         @csrf
         <input type="email" name="admin_email" >
         <input type="text" name="admin_pass" >
-        <button type="submit"> 設定</button>
+        <button type="submit">設定</button>
     </form>
 
-    <!-- 管理者、スタッフ、参加者へのリンク -->
+            <h3>TECH.IS 自主制作</h3>
+            <br>
+            <h4>ログインページ</h4>
+            <br>
+            <br>
+            それぞれ、以下よりログインページにいけます。
+            <br>
+            管理者（URL= /admin/ email=admin@gmail.com password = 123456）
+            <a href="{{ url('/admin') }} ">管理者ログイン</a>
+            <br>
+            スタッフ(url= /staff/ email=staff1@gmail.com password=123456)
+            <a href="{{ url('/staff') }}">スタッフログイン</a>
+            <br>
+            （staff2@gmail.com staff3@gmail.com でも可）
+            <br>
+            <br>
+            参加者（URL=/player/ email=player1@gmail.com passwaordはメール送信）
+            <a href="{{ url('/player') }}">参加者ログイン</a>
+            （player2@gmail.com～player33@gmail.com でも可）
+            <br>
+            （player33@gmail.com は　グループ申込み）
+            <br>
 
-    <a href="{{ url('/admin') }} ">管理者</a>
-    <a href="{{ url('/staff') }}">スタッフ</a>
-    <a href="{{ url('/player') }}">参加者</a>
+            </body>
+            </html>
 
 
-
-
-    <body class="antialiased">
+    <!-- <body class="antialiased">
         <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
             @if (Route::has('login'))
                 <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
@@ -148,4 +167,4 @@
             </div>
         </div>
     </body>
-</html>
+</html> -->
