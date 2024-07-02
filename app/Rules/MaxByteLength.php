@@ -23,7 +23,7 @@ class MaxByteLength implements ValidationRule
     {
         // マルチバイト文字列のバイト数を計算
         if (strlen(mb_convert_encoding($value, 'SJIS', 'UTF-8')) > $this->maxBytes) {
-            $fail("名前は {$this->maxBytes} 文字を超えてはいけません。");
+            $fail("名前は50文字を超えてはいけません。");
         }
     }
 }

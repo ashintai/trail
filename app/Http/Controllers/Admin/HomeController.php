@@ -84,7 +84,8 @@ class HomeController extends Controller
         // バリデーションルールの定義
         $rules = [
             'category_id' => 'required|integer',
-            'name' => ['required' , 'string' , new MaxByteLength(100)],
+            'name' => 'required|string|max:100',
+            // 'name' => ['required' , 'string' , new MaxByteLength(100)],
             'zekken' => 'required|integer|max:100000|min:1',
             'email' => 'required|email|max:240',
             'park_id' => 'nullable|integer',
@@ -101,7 +102,8 @@ class HomeController extends Controller
         //  バリデーションエラーメッセージの定義
         $messages = [
             'name.required' => '名前は必須です。',
-            'custom.name.max_byte_length' => '名前は100字以内にしてください。',
+            'name.max' => '名前は最大100文字までです。',
+            // 'custom.name.max_byte_length' => '名前は100字以内にしてください。',
             'category_id' => '参加クラスは必須です。',
             'email.required' => 'メールアドレスは必須です。',
             'email.email' => '有効なメールアドレスを入力してください。',
