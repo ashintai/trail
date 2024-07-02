@@ -83,28 +83,35 @@ class HomeController extends Controller
         // バリデーションルールの定義
         $rules = [
             'category_id' => 'required|integer',
-            'name' => 'required|string|max:255',
-            'zekken' => 'required|integer',
-            'email' => 'required|email',
+            'name' => 'required|string|max:240|',
+            'zekken' => 'required|integer|max:100000|min:1',
+            'email' => 'required|email|max:240',
             'park_id' => 'nullable|integer',
             'bus' => 'nullable|integer',
-            'comment' => 'nullable|string',
+            'comment' => 'nullable|string|max:240',
             'dns' => 'nullable|integer',
             'promise' => 'nullable|integer',
             'bus_ride' => 'nullable|integer',
             'reseption' => 'nullable|integer',
-            'phone' => 'nullable|string',
-            'password' => 'nullable|string',
+            'phone' => 'nullable|string|max:127',
+            'password' => 'nullable|string|max:10',
             ];
     
         //  バリデーションエラーメッセージの定義
         $messages = [
             'name.required' => '名前は必須です。',
+            'name.max' => '名前は240字以内にしてください。',
             'category_id' => '参加クラスは必須です。',
             'email.required' => 'メールアドレスは必須です。',
             'email.email' => '有効なメールアドレスを入力してください。',
+            'email.max' => 'メールアドレスは最大240字までです。',
             'zekken.integer' => 'ナンバーは整数である必要があります。',
             'zekken.required' => 'ナンバーは必須です。',
+            'zekken.max' => 'ナンバーは最大100000までです。',
+            'zekken.min' => 'ナンバーは正の整数である必要があります。',
+            'comment.max' => '備考は最大240字までです。',
+            'phone.max' => '連絡先は最大127文字までです。',
+            'password.max' => 'パスワードは最大10文字までです。',
             ];
         
         //  バリデーションの実行
