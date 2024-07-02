@@ -339,7 +339,25 @@ class HomeController extends Controller
         $csv_park_keyword = $request->csv_park_keyword; //駐車券のキーワード
         $csv_bus = $request->csv_bus; //バス券の項目位置
         $csv_bus_keyword = $request->csv_bus_keyword; //バス券のキーワード
-               
+        
+        // 設定値のバリデーション
+        $err_flg = false;
+        if ( $csv_name < 0 | $csv_nama > 10000){ $err_flg = true ;}
+        if ( $csv_email < 0 | $csv_email > 10000){ $err_flg = true ;}
+        if ( $csv_phonel < 0 | $csv_phone1 > 10000){ $err_flg = true ;}
+        if ( $csv_phone2 < 0 | $csv_phone2 > 10000){ $err_flg = true ;}
+        if ( $csv_zekken < 0 | $csv_zekken > 10000){ $err_flg = true ;}
+        if ( $csv_category < 0 | $csv_category > 10000){ $err_flg = true ;}
+        if ( $csv_park < 0 | $csv_park > 10000){ $err_flg = true ;}
+        if ( $csv_bus < 0 | $csv_bus > 10000){ $err_flg = true ;}
+        if( err_flg){
+            return back()->withErrors(['ini' => 'CSVの項目位置は0から10000の間でなければいけません。']);
+        }
+        if( strlen($csv_park_keyword) > 100 ){$err_flg = true ;}
+        if( strlen($csv_bus_keyword ) > 100 ){$err_flg = true ;}
+        if( err_flg){
+            return back()->withErrors(['ini' => '駐車場、バスのキーワードは100文字以内でなければいけません。']);
+        }
         // CSVファイルの読み込み
         // CSV読込中の警告メッセージを初期化
         $message = "";
@@ -486,6 +504,18 @@ class HomeController extends Controller
         for ($num = 1 ; $num <= Constants::MAX_STAFF ; $num++){
             $key_email = "staff_email_" . $num;
             $key_pass = "staff_pass_" . $num;
+
+            // 入力値のバリデーション
+            // 入力値がnullの場合、先に空白文字列に変換しておく
+            $length = strlen($request->{$key_email} ?? '');
+            if( $length > 100 ){
+                return back()->withErrors(['ini' => [ 'スタッフのメールアドレスは100文字以内でなければいけません。'],]);
+            }
+            $length = strlen($request->{$key_pass} ?? '');
+            if( $length > 10){
+                return back()->withErrors(['ini' => [ 'スタッフのパスワードは10文字以内でなければいけません。'],]);
+            }
+
             // emailが入力されている場合のみ対象とする
             if ( $request->{$key_email} ){
                 // emailがすでに登録済みか調べる
