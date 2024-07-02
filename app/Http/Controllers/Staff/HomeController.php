@@ -79,7 +79,7 @@ class HomeController extends Controller
     {
         // バリデーションルールの定義
         $rules = [
-            'comment' => 'nullable|string',
+            'comment' => 'nullable|string|max:240',
             ];
         //  バリデーションの実行
         $validated = $request->validate($rules );

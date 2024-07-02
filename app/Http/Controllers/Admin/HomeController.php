@@ -83,7 +83,7 @@ class HomeController extends Controller
         // バリデーションルールの定義
         $rules = [
             'category_id' => 'required|integer',
-            'name' => 'required|string|max:240|',
+            'name' => 'required|string|max:240',
             'zekken' => 'required|integer|max:100000|min:1',
             'email' => 'required|email|max:240',
             'park_id' => 'nullable|integer',
@@ -162,9 +162,9 @@ class HomeController extends Controller
         // バリデーションルールの定義
         $rules = [
         'category_id' => 'required|integer',
-        'name' => 'required|string|max:255',
-        'zekken' => 'required|integer|unique:players,zekken',
-        'email' => 'required|email',
+        'name' => 'required|string|max:240',
+        'zekken' => 'required|integer|unique:players,zekken|max:100000|min:1',
+        'email' => 'required|email|max:240',
         'park_id' => 'nullable|integer',
         'bus' => 'nullable|integer',
          ];
@@ -174,10 +174,13 @@ class HomeController extends Controller
             'name.required' => '名前は必須です。',
             'category_id' => '参加クラスは必須です。',
             'email.required' => 'メールアドレスは必須です。',
+            'email.max' => 'メールアドレスは最大240字までです。',
             'email.email' => '有効なメールアドレスを入力してください。',
             'zekken.integer' => 'ナンバーは整数である必要があります。',
             'zekken.unique' => 'ナンバーが重複しています。',
             'zekken.required' => 'ナンバーは必須です',
+            'zekken.max' => 'ナンバーの最大は100000までです。',
+            'zekken.min' => 'ナンバーは正の整数でなければなりません。',
             ];
 
         //  バリデーションの実行
