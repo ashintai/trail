@@ -81,8 +81,12 @@ class HomeController extends Controller
         $rules = [
             'comment' => 'nullable|string|max:240',
             ];
+            // バリデーションエラーの定義
+        $message = [
+            'comment.max' => '備考は最大240文字までです。',
+        ];
         //  バリデーションの実行
-        $validated = $request->validate($rules );
+        $validated = $request->validate($rules ,$message );
 
         // バリデーション後の参加者情報（備考）の登録
         $player = Player::find($request->id);
