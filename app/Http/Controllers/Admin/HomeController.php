@@ -120,7 +120,7 @@ class HomeController extends Controller
         //  バリデーションの実行
         $validated = $request->validate($rules , $messages);
 
-        // バリデーション後の参加者の登録
+                // バリデーション後の参加者の登録
         $player = Player::find($request->id);
 
         $player->name = $validated['name'];
@@ -142,6 +142,17 @@ class HomeController extends Controller
             $player->password = Hash::make( $pass );
         }
         
+        // ナンバーの重複チェック
+        // 入力されたナンバーがすでにつかわれているか確認
+        $check_zekken = Palyer::where('zekken' , $player->zekken)->first();
+        if( !$check_zekken){
+            // 同じナンバーが見つかった場合
+            return back()->withErrors([
+                'ini' => ['ナンバーが重複しています。'],
+            ]);
+        }
+
+
         // テーブルへ書き戻し
         $player->save();
 
