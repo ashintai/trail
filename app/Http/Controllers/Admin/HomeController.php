@@ -224,14 +224,21 @@ class HomeController extends Controller
     //
     public function ini_categories(Request $request)
     {
+         
         // 参加クラスの設定を変数へ取り込み
         // 設定を読み込む配列
         $categories = [];
 
         for ($num = 1 ; $num < Constants::MAX_CATEGORY ; $num++){
             $key = "category_" . $num;
-            if ( $request->$key !== null ){
-                $categories[] = $request->$key;
+            // 参加クラスの文字列長さチェック
+            if( strlen( $request->{$key}) > 100 ){
+                return back()->withErrors([
+                    'ini' => ['参加クラス名は100文字までです'],
+                ]);
+            }
+            if ( $request->{$key} !== null ){
+                $categories[] = $request->{$key};
             }
         }
 
@@ -271,12 +278,27 @@ class HomeController extends Controller
         for ($num = 1 ; $num <= Constants::MAX_PARK ; $num++){
             $key_park = "park_" . $num;
             $key_capa = "capa_" . $num;
-            if ( $request->$key_park !== null ){
-                if( $request->$key_capa !== null ){
-                    $parks[] = array('name'=>$request->{$key_park} , 'capa' => $request->{$key_capa});
-                }else{
-                    $parks[] = array('name'=>$request->{$key_park} , 'capa' => 0);
+            if ( $request->{$key_park} !== null ){
+                // 駐車場名称の文字列長さチェック
+                if( strlen($request->{$key_park}) > 100){
+                    return back()->withErrors([
+                        'ini' => ['駐車場の名称は100文字までです'],
+                    ]);
                 }
+                if( !$request->{$key_capa} )
+                {
+                    // 駐車台数の入力がない
+                    return back()->withErrors([
+                        'ini' => ['駐車場台数が未入力です。'],
+                    ]);
+                }else{
+                    if( $request->{$key_capa} < 1 | $request->{$key_capa} > 100000){
+                        return back()->withErrors([
+                            'ini' => ['駐車場台数は1以上100000以下です。'],
+                        ]);
+                    }
+                }
+                $parks[] = array('name'=>$request->{$key_park} , 'capa' => $request->{$key_capa});
             }
         }
 
