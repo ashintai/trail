@@ -165,7 +165,7 @@ class HomeController extends Controller
         // バリデーションルールの定義
         $rules = [
         'category_id' => 'required|integer',
-        'name' => 'required|string|max:240',
+        'name' => 'required|string|max:100',
         'zekken' => 'required|integer|unique:players,zekken|max:100000|min:1',
         'email' => 'required|email|max:240',
         'park_id' => 'nullable|integer',
@@ -175,6 +175,7 @@ class HomeController extends Controller
         //  バリデーションエラーメッセージの定義
         $messages = [
             'name.required' => '名前は必須です。',
+            'name.max' => '名前は最大100文字までです。',
             'category_id' => '参加クラスは必須です。',
             'email.required' => 'メールアドレスは必須です。',
             'email.max' => 'メールアドレスは最大240字までです。',
@@ -321,6 +322,12 @@ class HomeController extends Controller
         // CSV読込中の警告メッセージを初期化
         $message = "";
 
+        // 拡張子が.csvでないファイルを添付しようとした場合
+        $app_file = $request->file('file');
+        if ($app_file->getClientOriginalExtension() !== 'csv') {
+            return back()->withErrors(['file' => 'ファイルはCSV形式である必要があります。']);
+        }
+        
         // 参加者テーブルを一旦消去するか
         // チェックボックスで追加にチェックがあると$request->csv_append が送られる
         if ( !isset($request->csv_append)){
