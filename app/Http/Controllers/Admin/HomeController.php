@@ -145,7 +145,7 @@ class HomeController extends Controller
         // ナンバーの重複チェック
         // 入力されたナンバーがすでにつかわれているか確認
         $check_zekken = Player::where('zekken' , $player->zekken)->first();
-        if( !$check_zekken){
+        if( $check_zekken){
             // 同じナンバーが見つかった場合
             return back()->withErrors([
                 'ini' => ['ナンバーが重複しています。'],
