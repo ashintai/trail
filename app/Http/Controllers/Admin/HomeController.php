@@ -11,6 +11,7 @@ use App\Models\Staff;
 use Barryvdh\Debugbar\Facade as Debugbar;
 use Illuminate\Support\Facades\Hash;
 use App\Constants;
+use App\Rules\MaxByteLength;
 
 class HomeController extends Controller
 {
@@ -83,7 +84,7 @@ class HomeController extends Controller
         // バリデーションルールの定義
         $rules = [
             'category_id' => 'required|integer',
-            'name' => 'required|string|max:240',
+            'name' => 'required|string|new MaxByteLength(20)',
             'zekken' => 'required|integer|max:100000|min:1',
             'email' => 'required|email|max:240',
             'park_id' => 'nullable|integer',
@@ -100,7 +101,7 @@ class HomeController extends Controller
         //  バリデーションエラーメッセージの定義
         $messages = [
             'name.required' => '名前は必須です。',
-            'name.max' => '名前は240字以内にしてください。',
+            'name.max_byte_length' => '名前は240字以内にしてください。',
             'category_id' => '参加クラスは必須です。',
             'email.required' => 'メールアドレスは必須です。',
             'email.email' => '有効なメールアドレスを入力してください。',
