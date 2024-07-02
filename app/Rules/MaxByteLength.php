@@ -19,21 +19,11 @@ class MaxByteLength implements ValidationRule
         $this->maxBytes = $maxBytes;
     }
 
-    public function passes($attribute, $value)
+    public function validate(string $attribute, mixed $value, \Closure $fail): void
     {
         // マルチバイト文字列のバイト数を計算
-        return strlen(mb_convert_encoding($value, 'SJIS', 'UTF-8')) <= $this->maxBytes;
+        if (strlen(mb_convert_encoding($value, 'SJIS', 'UTF-8')) > $this->maxBytes) {
+            $fail("The {$attribute} may not be greater than {$this->maxBytes} bytes.");
+        }
     }
-
-    public function message()
-    {
-        return "The :attribute may not be greater than {$this->maxBytes} bytes.";
-    }
-
-
-
-    // public function validate(string $attribute, mixed $value, Closure $fail): void
-    // {
-    //     //
-    // }
 }
