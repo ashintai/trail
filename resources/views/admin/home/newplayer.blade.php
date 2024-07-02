@@ -19,7 +19,7 @@
     <div >
         <ul>
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+                <li class="text-danger" >{{ $error }}</li>
             @endforeach
         </ul>
     </div>
