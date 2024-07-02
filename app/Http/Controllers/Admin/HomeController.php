@@ -324,8 +324,19 @@ class HomeController extends Controller
 
         // 拡張子が.csvでないファイルを添付しようとした場合
         $app_file = $request->file('csvFile');
+        // ファイルがアップロードされているか確認
+        if (!$app_file) {
+            return back()->withErrors(['ini' => 'ファイルがアップロードされていません。']);
+        }
+
+        // 拡張子がcsvであることを確認
         if ($app_file->getClientOriginalExtension() !== 'csv') {
             return back()->withErrors(['ini' => 'ファイルはCSV形式である必要があります。']);
+        }
+
+        // MIMEタイプがtext/csvであることを確認
+        if ($app_file->getMimeType() !== 'text/csv') {
+            return back()->withErrors(['ini' => 'ファイルのタイプが不正です。']);
         }
 
         // 参加者テーブルを一旦消去するか
