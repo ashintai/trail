@@ -342,20 +342,21 @@ class HomeController extends Controller
         
         // 設定値のバリデーション
         $err_flg = false;
-        if ( $csv_name < 0 | $csv_nama > 10000){ $err_flg = true ;}
-        if ( $csv_email < 0 | $csv_email > 10000){ $err_flg = true ;}
-        if ( $csv_phonel < 0 | $csv_phone1 > 10000){ $err_flg = true ;}
-        if ( $csv_phone2 < 0 | $csv_phone2 > 10000){ $err_flg = true ;}
-        if ( $csv_zekken < 0 | $csv_zekken > 10000){ $err_flg = true ;}
-        if ( $csv_category < 0 | $csv_category > 10000){ $err_flg = true ;}
-        if ( $csv_park < 0 | $csv_park > 10000){ $err_flg = true ;}
-        if ( $csv_bus < 0 | $csv_bus > 10000){ $err_flg = true ;}
-        if( err_flg){
+        if ( $csv_name < 0 || $csv_name > 10000){ $err_flg = true ;}
+        if ( $csv_email < 0 || $csv_email > 10000){ $err_flg = true ;}
+        if ( $csv_phone1 < 0 || $csv_phone1 > 10000){ $err_flg = true ;}
+        if ( $csv_phone2 < 0 || $csv_phone2 > 10000){ $err_flg = true ;}
+        if ( $csv_zekken < 0 || $csv_zekken > 10000){ $err_flg = true ;}
+        if ( $csv_category < 0 || $csv_category > 10000){ $err_flg = true ;}
+        if ( $csv_park < 0 || $csv_park > 10000){ $err_flg = true ;}
+        if ( $csv_bus < 0 || $csv_bus > 10000){ $err_flg = true ;}
+        if( $err_flg){
             return back()->withErrors(['ini' => 'CSVの項目位置は0から10000の間でなければいけません。']);
         }
+        $err_flg = false;
         if( strlen($csv_park_keyword) > 100 ){$err_flg = true ;}
         if( strlen($csv_bus_keyword ) > 100 ){$err_flg = true ;}
-        if( err_flg){
+        if( $err_flg){
             return back()->withErrors(['ini' => '駐車場、バスのキーワードは100文字以内でなければいけません。']);
         }
         // CSVファイルの読み込み
