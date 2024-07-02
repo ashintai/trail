@@ -323,7 +323,7 @@ class HomeController extends Controller
         $message = "";
 
         // 拡張子が.csvでないファイルを添付しようとした場合
-        $app_file = $request->csvfile('file');
+        $app_file = $request->file('csvfile');
         if ($app_file->getClientOriginalExtension() !== 'csv') {
             return back()->withErrors(['file' => 'ファイルはCSV形式である必要があります。']);
         }
