@@ -18,6 +18,7 @@ class DompdfController extends Controller
     {
         
     // フォントへのアクセスを確認
+    Log::info('****************************************************************');
     $fontPath = storage_path('fonts/ipag.ttf');
     Log::info('Font path' . $fontPath);
     
