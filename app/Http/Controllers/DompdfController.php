@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Barryvdh\DomPDF\Facade as PDF; 
+use Barryvdh\DomPDF\Facade\pdf; 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 // Debug用にLogを残すため追加
