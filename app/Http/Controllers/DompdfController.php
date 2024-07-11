@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Barryvdh\DomPDF\Facade\Pdf; 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+// Debug用にLogを残すため追加
+use Illuminate\Support\Facades\Log;
 
 // 駐車券のPDFを発行
 // 画像ファイルもBase64形式で渡す
@@ -14,6 +16,12 @@ class DompdfController extends Controller
     //PDFの生成
     public function generatePDF(Request $request)
     {
+        
+    // フォントへのアクセスを確認
+    $fontPath = storage_path('fonts/ipag.ttf');
+    Log::info('Font path' . $fontPath);
+    
+        
         // 画像データの準備
         $format = public_path('images/parkticket.jpg') ;
         $format_data = base64_encode(file_get_contents($format));
