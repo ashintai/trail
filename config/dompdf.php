@@ -186,7 +186,10 @@ return array(
          * Used if no suitable fonts can be found. This must exist in the font folder.
          * @var string
          */
-        "default_font" => "serif",
+
+
+         // 一時的にコメントアウト
+        // "default_font" => "serif",
 
         /**
          * Image DPI setting
