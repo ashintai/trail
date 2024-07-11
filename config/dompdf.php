@@ -189,7 +189,7 @@ return array(
 
 
          // 一時的にコメントアウト
-        // "default_font" => "serif",
+        "default_font" => "ipag",
 
         /**
          * Image DPI setting
@@ -289,7 +289,7 @@ return array(
     //'font_dir' => storage_path('fonts/'), // カスタムフォントのディレクトリ
     //'font_cache' => storage_path('fonts/'), // フォントキャッシュのディレクトリ
 
-    'default_font' => 'ipag',
+    // 'default_font' => 'ipag',
 
     'fonts' => [
         'ipag' => [
@@ -298,9 +298,7 @@ return array(
             'I'  => 'ipag.ttf',    // Italic
             'BI' => 'ipag.ttf'     // Bold Italic
         ]
-        ],
-    // ここまで
-        
+    ],
     ),
 
 );
