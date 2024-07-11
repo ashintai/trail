@@ -16,33 +16,7 @@ class DompdfController extends Controller
     //PDFの生成
     public function generatePDF(Request $request)
     {
-        
-    // フォントへのアクセスを確認
-    Log::info('****************************************************************');
-    $fontPath = storage_path('fonts/ipag.ttf');
-    Log::info('Font path' . $fontPath);
-    
 
-
-
-    // カスタムフォントの設定
-    $customFont = [
-        'ipag' => [
-            'R'  => 'ipag.ttf',    // Regular
-            'B'  => 'ipag.ttf',    // Bold
-            'I'  => 'ipag.ttf',    // Italic
-            'BI' => 'ipag.ttf'     // Bold Italic
-        ]
-    ];
-    PDF::getDomPDF()->getOptions()->set('isHtml5ParserEnabled', true);
-    PDF::getDomPDF()->getOptions()->set('isRemoteEnabled', true);
-    PDF::getDomPDF()->getFontMetrics()->getFontFamilyManager()->registerFont('/storage/fonts/', $customFont);
-
-    // ここまで
-
-
-
-        
         // 画像データの準備
         $format = public_path('images/parkticket.jpg') ;
         $format_data = base64_encode(file_get_contents($format));
