@@ -39,9 +39,9 @@
             /* 駐車場記号の位置 */
             .overlay-park{
                 position: absolute;
-                top: 5%;
-                left: 20%;
-                font-size:300px;
+                top: 8%;
+                left: 25%;
+                font-size:350px;
                 color:blue;
             }
 
