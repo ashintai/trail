@@ -42,9 +42,10 @@
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-body text-center">
-                        <img src="{{ asset('images/title2024.jpg') }}" style="width: 120px;" class="mb-2" alt="title">
-                        <h5 class="card-title ">ナンバービブ引換券</h5>gazou 
-                        <hr style="border: none; border-top: 20px solid #008081 !important; width: 100%;"> 
+                        <img src="{{ asset('images/title2024.jpg') }}" style="width: 180px;" class="mb-2" alt="title">
+                        <h5 class="card-title ">ナンバービブ引換券</h5> 
+                        <div style="height: 20px; backgroud-color: #008081; width: 100%;"><div>
+                        <!-- <hr style="border: none; border-top: 20px solid #008081 !important; width: 100%;">  -->
                         <div class="m-1">
                             ナンバー：{{ $player->zekken }}
                         </div>
