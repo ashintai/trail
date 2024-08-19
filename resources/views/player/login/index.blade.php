@@ -37,6 +37,7 @@
                             <input type="password" name="password" class="bg-info"><br>
                         </div>
                         <button type="submit" class="btn btn-primary m-3">ログイン</button>
+                        <br>
                         <a href="https://mikawatrail.com/%e3%83%ad%e3%82%b0%e3%82%a4%e3%83%b3/" class="btn btn-primary" >戻る</a>
                     </form>
                 </div>
