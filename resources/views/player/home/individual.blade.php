@@ -43,7 +43,7 @@
                 <div class="card">
                     <div class="card-body text-center">
                         <h5 class="card-title ">ナンバービブ引換券</h5>
-                        <hr> <!-- <hr> 水平線 -->
+                        <hr style="border: none; border-top: 20px solid #008081; width: 100%;"> 
                         <div class="m-1">
                             ナンバー：{{ $player->zekken }}
                         </div>
