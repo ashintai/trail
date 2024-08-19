@@ -15,7 +15,7 @@
 </header>
 
 @error('login')
-    <p>{{ $message }}</p>
+    <p class="text-danger">{{ $message }}</p>
     @enderror
 
 <div class="container">

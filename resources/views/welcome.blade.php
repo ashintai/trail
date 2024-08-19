@@ -22,7 +22,7 @@
     
     <body>
     <!-- 管理者のemailとpassの設定 -->
-    <form action="{{ url('/admin_pass') }}" method="POST">
+    <!-- <form action="{{ url('/admin_pass') }}" method="POST">
         @csrf
         <input type="email" name="admin_email" >
         <input type="text" name="admin_pass" >
@@ -32,7 +32,7 @@
     <form action="{{ url('/admin_clear') }}" method="POST">
         @csrf
         <button type="submit">消去</button>
-    </form>
+    </form> -->
 
         <br><br>
         <div class = "ms-4">
@@ -43,21 +43,18 @@
             <br>
             それぞれ、以下よりログインページにいけます。
             <br><br>
-            管理者（URL= /admin/ email=admin@gmail.com password = 123456）<br>
+            管理者<br>
             <a href="{{ url('/admin') }} " class="btn btn-primary">管理者ログイン</a>
             <br><br>
-            スタッフ(url= /staff/ email=staff1@gmail.com password=123456) <br>
+            スタッフ <br>
             <a href="{{ url('/staff') }}"class="btn btn-primary" >スタッフログイン</a>
             <br>
-            （staff2@gmail.com staff3@gmail.com でも可）
             <br>
             <br>
-            参加者（URL=/player/ email=player1@gmail.com passwaordはメール送信）<br>
+            参加者<br>
             <a href="{{ url('/player') }}" class="btn btn-primary" >参加者ログイン</a>
             <br>
-            （player2@gmail.com～player33@gmail.com でも可）
             <br>
-            （player33@gmail.com は　グループ申込み）
             <br><br>
             </div>
 
