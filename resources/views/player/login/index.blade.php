@@ -58,9 +58,7 @@
 </div>
 <br>
 
-<div text-align="center">
 <a href="https://mikawatrail.com/%e3%83%ad%e3%82%b0%e3%82%a4%e3%83%b3/" class="btn btn-primary" style="text-align: center" >戻る</a>
-</div>
 
 <footer>
     <hr>
