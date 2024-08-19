@@ -50,10 +50,16 @@
     パスコードは１度発行されますと、以降のログインで有効です。<br>
     もしパスコードをお忘れの場合は、再度メールアドレスのみを入力し「ログイン」をタップしてください。<br>
     新しいパスコードが発行されます。<br>
-    なお、メールはGmailで発信されますので、@gmailからのメールが受信可能な設定をお願いします。<br>
+    なお、メールはGmailで発信されますので、@gmailまたはshintai.akira@gmail.comからのメールが受信可能な設定をお願いします。<br>
+    メールが届かない場合、迷惑メールに振り分けられていないかもご確認ください。
     <br>
     ご不明な点あれば、以下までメールでお問合せください。<br>
     三河高原トレイルランニング大会実行委員会　事務局　info@mikawatrail.com<br>
+</div>
+<br>
+
+<div text-align="center">
+<a href="https://mikawatrail.com/%e3%83%ad%e3%82%b0%e3%82%a4%e3%83%b3/" class="btn btn-primary" style="text-align: center" >戻る</a>
 </div>
 
 <footer>

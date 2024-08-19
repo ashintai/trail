@@ -61,7 +61,7 @@ class LoginController extends Controller
         }else{
             // emailが存在しない
             return back()->withErrors([
-                'login' => ['メールアドレス登録されていません'],
+                'login' => ['メールアドレスが登録されていません'],
               ])->withInput();
         }
     }
