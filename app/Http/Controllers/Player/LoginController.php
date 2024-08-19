@@ -54,7 +54,7 @@ class LoginController extends Controller
                 // 本人にパスコードをメールで送信
                 Mail::to( $email )->send(new PassEmail($passcode ));
                 return back()->withErrors([
-                    'login' => ['本番モード：パスコードを発行しました' . $passcode],
+                    'login' => ['パスコードをメールで送信しました' ],
                   ])->withInput();
             }
           

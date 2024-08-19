@@ -33,7 +33,7 @@ class PassEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: '三河高原トレイルランイング　パスワードのお知らせ',
+            subject: '三河高原トレイルランニングレース　パスコードのお知らせ',
         );
     }
     /**

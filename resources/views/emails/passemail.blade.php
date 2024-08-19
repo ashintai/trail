@@ -4,7 +4,7 @@
     <title>Welcome to Our Platform</title>
 </head>
 <body>
-    <p>あなたのパスワードは以下です</p>
+    <p>あなたのパスコードは以下です</p>
     <p>{{ $password }}</p>
 </body>
 </html>
