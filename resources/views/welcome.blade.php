@@ -22,14 +22,14 @@
     
     <body>
     <!-- 管理者のemailとpassの設定 -->
-    <!-- <form action="{{ url('/admin_pass') }}" method="POST">
+    <form action="{{ url('/admin_pass') }}" method="POST">
         @csrf
         <input type="email" name="admin_email" >
         <input type="text" name="admin_pass" >
         <button type="submit">設定</button>
     </form>
 
-    <form action="{{ url('/admin_clear') }}" method="POST">
+    <!-- <form action="{{ url('/admin_clear') }}" method="POST">
         @csrf
         <button type="submit">消去</button>
     </form> -->
